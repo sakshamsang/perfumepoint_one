@@ -1,0 +1,108 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Stocks Form {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Add Stocks</h5>
+                            </div>
+                            <div class="card-body">
+                                {% if msg %}
+                                <span class="mb-0 text-danger">
+                                    {{ msg | safe }}
+                                </span>
+                                {% else %}
+                                <span class="mb-0 text-muted">
+                                    Add customer info
+                                </span>
+                                {% endif %}
+                                <hr>
+                                <form role="form" method="POST" action="">
+                                    {{ form.hidden_tag() }}
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                {{ form.pfor.label }}
+                                                {{ form.pfor(placeholder="Enter purchased for", class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.invoiced.label }}
+                                                {{ form.invoiced(placeholder="Enter invoice date",class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.purchasedp.label }}
+                                                {{ form.purchasedp(placeholder="Enter purchased price", class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.unit.label }}
+                                                {{ form.unit(placeholder="Enter unit", class="form-control") }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                {{ form.product.label }}
+                                                {{ form.product(placeholder="Enter product name", class="form-control", rows=2) }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.pfrom.label }}
+                                                {{ form.pfrom(placeholder="Enter purchased from", class="form-control", rows=2) }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.discount.label }}
+                                                {{ form.discount(placeholder="Enter discount", class="form-control") }}
+                                            </div>
+                                            
+                                            
+                                            
+                                            <div class="form-group">
+                                                {{ form.qty.label }}
+                                                {{ form.qty(placeholder="Enter quantity", class="form-control") }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                {{ form.invoice.label }}
+                                                {{ form.invoice(placeholder="Enter invoice no.", class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.sprice.label }}
+                                                {{ form.sprice(placeholder="Enter sales price",class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.remarks.label }}
+                                                {{ form.remarks(placeholder="Enter HSN name", class="form-control") }}
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" name="comp_add"
+                                                class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

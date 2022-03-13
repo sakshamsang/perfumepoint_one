@@ -10,6 +10,7 @@ class InvoiceGenerator(FlaskForm):
     product_oBarcode = StringField('Product Barcode')
     product_qty = IntegerField('Quantity')
     product_discount = FloatField('Discount')
+    product_tax = StringField('Tax Amt')
     subtotal = FloatField('Subtotal')
 
 
@@ -38,9 +39,10 @@ class CustomerForm(FlaskForm):
     wallet = BooleanField('Wallet',
                           id='customCheck1',
                           name='customCheck1')
-    gender = RadioField("Gender", 
+    gender = RadioField("Gender",
                         name="customRadioInline1",
                         choices=[('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')])
+
 
 class CompanyForm(FlaskForm):
     name = StringField('Name*',
@@ -55,8 +57,8 @@ class CompanyForm(FlaskForm):
                         choices=states_tuples(),
                         validators=[DataRequired()])
     pincode = StringField('Pincode*',
-                       id='company_pincode',
-                       validators=[DataRequired()])
+                          id='company_pincode',
+                          validators=[DataRequired()])
     email = EmailField('Email Address',
                        id='customer_email',
                        validators=[Email()])
@@ -64,45 +66,46 @@ class CompanyForm(FlaskForm):
                         id='customer_phone',
                         validators=[DataRequired(), Length(min=8, max=10)])
     landline = StringField('Land Line',
-                        id='customer_landline',
-                        validators=[Length(min=8, max=10)])
+                           id='customer_landline',
+                           validators=[Length(min=8, max=10)])
     regddate = DateField('Regd Date',
-                    id='company_regddate')
+                         id='company_regddate')
     regdno = StringField('Regd No*',
-                       id='company_regdno',
-                       validators=[DataRequired()])
+                         id='company_regdno',
+                         validators=[DataRequired()])
     gstno = StringField('GST No*',
-                       id='company_gstno',
-                       validators=[DataRequired()])
+                        id='company_gstno',
+                        validators=[DataRequired()])
     panno = StringField('PAN No*',
-                       id='company_panno',
-                       validators=[DataRequired()])
+                        id='company_panno',
+                        validators=[DataRequired()])
     tinno = StringField('TIN No*',
-                       id='company_tinno',
-                       validators=[DataRequired()])
+                        id='company_tinno',
+                        validators=[DataRequired()])
     cinno = StringField('CIN No*',
-                       id='company_cinno',
-                       validators=[DataRequired()])
+                        id='company_cinno',
+                        validators=[DataRequired()])
     website = TextAreaField('WebSite',
                             id='customer_website')
     rssale = StringField('1 Rs Sale Points',
-                       id='company_rssale')
+                         id='company_rssale')
     point = StringField('1 Point Redeem value',
-                       id='company_point')
+                        id='company_point')
+
 
 class UserForm(FlaskForm):
     company = SelectField('Company*',
-                        id='user_company',
-                        choices=company_tuples(),
-                        validators=[DataRequired()])
+                          id='user_company',
+                          choices=company_tuples(),
+                          validators=[DataRequired()])
     manager = SelectField('Manager*',
-                        id='user_manager',
-                        choices=manager_tuples(),
-                        validators=[DataRequired()])
+                          id='user_manager',
+                          choices=manager_tuples(),
+                          validators=[DataRequired()])
     role = SelectField('Role*',
-                        id='user_role',
-                        choices=roles_tuples(),
-                        validators=[DataRequired()])
+                       id='user_role',
+                       choices=roles_tuples(),
+                       validators=[DataRequired()])
     name = StringField('Name*',
                        id='users_name',
                        validators=[DataRequired()])
@@ -110,6 +113,7 @@ class UserForm(FlaskForm):
                        id='users_email',
                        validators=[Email()])
     # pass and confirm passs need to be added
+
 
 class ProductForm(FlaskForm):
     name = StringField('Name*',
@@ -123,63 +127,64 @@ class ProductForm(FlaskForm):
                         choices=states_tuples(),
                         validators=[DataRequired()])
     category = SelectField('Category*',
-                        id='product_category',
-                        choices=states_tuples(),
-                        validators=[DataRequired()])
+                           id='product_category',
+                           choices=states_tuples(),
+                           validators=[DataRequired()])
     mrp = FloatField('MRP',
-                        id='product_mrp')
+                     id='product_mrp')
     discount = FloatField('Discount',
-                        id='product_discount')
+                          id='product_discount')
     price = FloatField('Price',
-                        id='product_price')
+                       id='product_price')
     taxrate = FloatField('Tax Rate',
-                        id='product_taxrate')
+                         id='product_taxrate')
     unit = IntegerField('Unit',
                         id='product_unit')
     rackno = StringField('Rack Number',
-                        id='customer_rackno')
+                         id='customer_rackno')
     expiry = StringField('Product Expiry',
-                        id='product_expiry')
+                         id='product_expiry')
     hsncode = StringField('HSN Code',
-                        id='product_hsncode')
+                          id='product_hsncode')
     hsnname = StringField('HSN Name',
-                        id='product_hsnname')
+                          id='product_hsnname')
     cbarcode = StringField('Custom barcode',
-                        id='product_cbarcode')
+                           id='product_cbarcode')
     obarcode = StringField('Original barcode',
-                        id='product_obarcode')
+                           id='product_obarcode')
+
 
 class StockForm(FlaskForm):
     pfor = SelectField('Purchased For*',
-                        id='stock_pfor',
-                        choices=states_tuples(),
-                        validators=[DataRequired()])
+                       id='stock_pfor',
+                       choices=states_tuples(),
+                       validators=[DataRequired()])
     product = SelectField('Product*',
-                        id='stock_product',
-                        choices=states_tuples(),
-                        validators=[DataRequired()])
+                          id='stock_product',
+                          choices=states_tuples(),
+                          validators=[DataRequired()])
     invoice = SelectField('Invoice No*',
-                        id='stock_invoice',
-                        choices=states_tuples(),
-                        validators=[DataRequired()])
+                          id='stock_invoice',
+                          choices=states_tuples(),
+                          validators=[DataRequired()])
     invoiced = DateField('invoice Date',
-                    id='stock_invoiced')
+                         id='stock_invoiced')
     pfrom = SelectField('Purchased From*',
                         id='stock_pfrom',
                         choices=states_tuples(),
                         validators=[DataRequired()])
     purchasedp = StringField('Purchased Item Price in GST*',
-                       id='product_price',
-                       validators=[DataRequired()])
+                             id='product_price',
+                             validators=[DataRequired()])
     discount = SelectField('Discount*',
-                        id='stock_discount',
-                        validators=[DataRequired()])
+                           id='stock_discount',
+                           validators=[DataRequired()])
     sprice = SelectField('Sales Price*',
-                        id='stock_sprice',
-                        validators=[DataRequired()])
+                         id='stock_sprice',
+                         validators=[DataRequired()])
     qty = StringField('Quantity',
-                        id='stock_qty')
+                      id='stock_qty')
     unit = StringField('Unit',
-                        id='stock_unit')
+                       id='stock_unit')
     remarks = TextAreaField('remarks',
-                        id='stock_remarks')
+                            id='stock_remarks')

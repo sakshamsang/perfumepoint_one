@@ -1,6 +1,6 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Products {% endblock %}
+{% block title %} Customers {% endblock %}
 
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}
@@ -18,13 +18,8 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h4 class="m-b-12">Products</h4>
+                            <h4 class="m-b-12">Customers</h4>
                         </div>
-                        <!-- <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="#!">Tables</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:">Basic Tables</a></li>
-                        </ul> -->
                     </div>
                 </div>
             </div>
@@ -46,9 +41,18 @@
                                     <table class="table table-hover cell-border order-column" id="example"
                                         style="width:80%; overflow:hidden">
                                         <thead>
-                                            {% for cust in df.columns %}
-                                            <th>{{ cust|safe }}</th>
-                                            {% endfor %}
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Gender</th>
+                                            <th>Date of Birth</th>
+                                            <th>Mobile</th>
+                                            <th>E-Mail</th>
+                                            <th>City</th>
+                                            <th>State</th>
+                                            <th>Address</th>
+                                            <th>Wallet</th>
+                                            <th>GST No.</th>
+
                                         </thead>
                                         <tbody>
                                             {% for custom in df.values %}
@@ -64,7 +68,6 @@
                                                 {% for cust in df.columns %}
                                                 <th>{{ cust|safe }}</th>
                                                 {% endfor %}
-
                                             </tr>
                                         </tfoot>
                                     </table>
