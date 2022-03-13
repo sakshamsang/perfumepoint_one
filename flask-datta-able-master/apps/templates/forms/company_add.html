@@ -1,0 +1,128 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Company Form {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Add Company</h5>
+                            </div>
+                            <div class="card-body">
+                                    {% if msg %}
+                                    <span class="mb-0 text-danger">
+                                        {{ msg | safe }}
+                                    </span>
+                                    {% else %}
+                                    <span class="mb-0 text-muted">
+                                        Add customer info
+                                    </span>
+                                    {% endif %} 
+                                <hr>
+                                <form role="form" method="POST" action="">
+                                    {{ form.hidden_tag() }}
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                {{ form.name.label }}
+                                                {{ form.name(placeholder="Enter name", class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.address.label }}
+                                                {{ form.address(placeholder="Enter address", class="form-control", rows=2) }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.city.label }}
+                                                {{ form.city(placeholder="Enter city", class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.state.label }}
+                                                {{ form.state(class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.website.label }}
+                                                {{ form.website(placeholder="Enter website(optional)", class="form-control", rows=2) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                {{ form.email.label }}
+                                                {{ form.email(placeholder="Enter Email", class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.pincode.label }}
+                                                {{ form.pincode(placeholder="Enter pin code", class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.regddate.label }}
+                                                {{ form.regddate(class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.panno.label }}
+                                                {{ form.panno(placeholder="Enter PAN no.", class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.tinno.label }}
+                                                {{ form.tinno(placeholder="Enter TIN no.", class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.rssale.label }}
+                                                {{ form.rssale(class="form-control") }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                {{ form.phone.label }}
+                                                {{ form.phone(placeholder="+91", class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.landline.label }}
+                                                {{ form.landline(placeholder="Enter landline", class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.regdno.label }}
+                                                {{ form.regdno(placeholder="Enter Reg no.", class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.gstno.label }}
+                                                {{ form.gstno(placeholder="Enter GST no.", class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.cinno.label }}
+                                                {{ form.cinno(placeholder="Enter CIN no.", class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.point.label }}
+                                                {{ form.point(class="form-control") }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" name="comp_add"
+                                                class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

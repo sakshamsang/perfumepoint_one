@@ -1,0 +1,99 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Customer Form {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Enter Product</h5>
+                            </div>
+                            <div class="card-body">
+                                {% if msg %}
+                                <span class="mb-0 text-danger">
+                                    {{ msg | safe }}
+                                </span>
+                                {% else %}
+                                <span class="mb-0 text-muted">
+                                    Add customer info
+                                </span>
+                                {% endif %}
+                                <hr>
+                                <form role="form" method="POST" action="">
+                                    {{ form.hidden_tag() }}
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                {{ form.product_name.label }}
+                                                {{ form.product_name(placeholder="Enter name", class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.product_qty.label }}
+                                                {{ form.product_qty(class="form-control") }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                {{ form.product_code.label }}
+                                                {{ form.product_code(placeholder="Enter code", class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.product_discount.label }}
+                                                {{ form.product_discount(class="form-control") }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                {{ form.product_oBarcode.label }}
+                                                {{ form.product_oBarcode(placeholder="Enter Barcode",
+                                                class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.subtotal.label }}
+                                                {{ form.subtotal(class="form-control", disabled=disabled) }}
+                                            </div>
+                                        </div>
+                                        <button type="submit" name="row_add" class="btn btn-primary">Add row</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js">
+</script>
+<script type="text/javascript">
+    $(function () {
+        var pname = [
+        {% for x in name %}
+        "{{ x | safe }}",
+    {% endfor %}
+        ];
+        $('#product_name').autocomplete({
+            source: pname
+        });
+    })
+</script>
+{% endblock javascripts %}

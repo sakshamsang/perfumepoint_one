@@ -1,0 +1,80 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} User Form {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Add Users</h5>
+                            </div>
+                            <div class="card-body">
+                                {% if msg %}
+                                <span class="mb-0 text-danger">
+                                    {{ msg | safe }}
+                                </span>
+                                {% else %}
+                                <span class="mb-0 text-muted">
+                                    Add customer info
+                                </span>
+                                {% endif %}
+                                <hr>
+                                <form role="form" method="POST" action="">
+                                    {{ form.hidden_tag() }}
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                {{ form.company.label }}
+                                                {{ form.company(placeholder="Enter company name", class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.name.label }}
+                                                {{ form.name(placeholder="Enter name",class="form-control") }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                {{ form.manager.label }}
+                                                {{ form.manager(placeholder="Enter manager name", class="form-control", rows=2) }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.email.label }}
+                                                {{ form.email(placeholder="Enter email", class="form-control", rows=2) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                {{ form.role.label }}
+                                                {{ form.role(placeholder="Enter invoice no.", class="form-control") }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" name="user_add"
+                                                class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

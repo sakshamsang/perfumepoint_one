@@ -1,0 +1,217 @@
+{% extends "layouts/base.html" %}
+{% block title %}Customer Form{% endblock %}
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+{% endblock stylesheets %}
+{% block content %}
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Enter Product</h5>
+                            </div>
+                            <div class="card-body">
+                                {% if msg %}
+                                <span class="mb-0 text-danger">{{ msg | safe }}</span>
+                                {% else %}
+                                <span class="mb-0 text-muted">Add customer info</span>
+                                {% endif %}
+                                <hr>
+                                <form role="form" method="POST" action="">
+                                    {{ form.hidden_tag() }}
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                {{ form.product_name.label }}
+                                                {{ form.product_name(placeholder="Enter name", class="form-control") }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                {{ form.product_code.label }}
+                                                {{ form.product_code(placeholder="Enter code", class="form-control") }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                {{ form.product_oBarcode.label }}
+                                                {{ form.product_oBarcode(placeholder="Enter Barcode",
+                                                class="form-control") }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                {{ form.product_qty.label }}
+                                                {{ form.product_qty(class="form-control", value=1, min=0) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                {{ form.product_discount.label }}
+                                                {{ form.product_discount(class="form-control") }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                {{ form.product_tax.label }}
+                                                {{ form.product_tax(class="form-control", disabled=disabled) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                {{ form.subtotal.label }}
+                                                {{ form.subtotal(class="form-control", disabled=disabled) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <button type="submit" name="row_add" id="row_add" class="btn btn-primary">Add row</button>
+                                            <button type="reset" id="reset_add" class="btn btn-secondary">Reset form</button>
+                                            <button type="submit" name="generate_invoice" id="generate_invoice" class="btn btn-success">Generate</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Report</h5>
+                            </div>
+                            <div class="card-block table-border-style">
+                                <div class="table-responsive">
+                                    <table class="table table-hover cell-border order-column" id="example"
+                                        style="width:100%; overflow:hidden">
+                                        <thead>
+                                            <th>Item (Name, Tax, HSN Code)</th>
+                                            <th>MRP</th>
+                                            <th>Group</th>
+                                            <th>Brand</th>
+                                            <th>Price</th>
+                                            <th>Qty</th>
+                                            <th>Amount (Total)</th>
+                                        </thead>
+                                        <tbody>
+                                            {% if table %}
+                                            {% for custom in df.values %}
+                                            <tr>
+                                                {% for c in custom %}
+                                                <td>{{ c|safe }}</td>
+                                                {% endfor %}
+                                            </tr>
+                                            {% endfor %}
+                                            {% else %}
+                                            <tr></tr>
+                                            {% endif %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        var raw = {{ df.to_dict('records') | safe
+    }}
+        var pname = [{% for x in df['name'].to_list() %}
+    "{{ x | safe }}",
+        {% endfor %}];
+    var pcode = [{% for x in df['code'].to_list() %}
+    "{{ x | safe }}",
+        {% endfor %}];
+    var pbarcode = [{% for x in df['oBarcode'].to_list() %}
+    "{{ x | safe }}",
+        {% endfor %}];
+    $('#product_name').autocomplete({
+        minLength: 3,
+        source: pname
+    });
+    $('#product_code').autocomplete({
+        minLength: 3,
+        source: pcode
+    });
+    $('#product_oBarcode').autocomplete({
+        minLength: 3,
+        source: pbarcode
+    });
+
+    $('#product_name').change(function () {
+        var found = raw.find(o => o.name === $('#product_name').val());
+        $('#product_code').val(found.code);
+        $('#product_oBarcode').val(found.oBarcode);
+        $('#product_discount').val(found.discount);
+        var tax = found.mrp * 100 / (100 + parseFloat(found.tax));
+        $('#product_tax').val("" + tax.toFixed(2) + " @ " + found.tax + " %");
+        var subtotal = found.mrp * (1 - found.discount / 100);
+
+        $('#subtotal').val(subtotal);
+    });
+
+    $('#product_code').change(function () {
+        var found = raw.find(o => o.code === $('#product_code').val());
+        $('#product_name').val(found.name);
+        $('#product_oBarcode').val(found.oBarcode);
+        $('#product_discount').val(found.discount);
+        var tax = found.mrp * 100 / (100 + parseFloat(found.tax));
+        $('#product_tax').val("" + tax.toFixed(2) + " @ " + found.tax + " %");
+        var subtotal = found.mrp * (1 - found.discount / 100);
+
+        $('#subtotal').val(subtotal);
+    });
+
+    $('#product_oBarcode').change(function () {
+        var found = raw.find(o => o.oBarcode === $('#product_oBarcode').val());
+        $('#product_name').val(found.name);
+        $('#product_code').val(found.code);
+        $('#product_discount').val(found.discount);
+        var tax = found.mrp * 100 / (100 + parseFloat(found.tax));
+        $('#product_tax').val("" + tax.toFixed(2) + " @ " + found.tax + " %");
+        var subtotal = found.mrp * (1 - found.discount / 100);
+        $('#subtotal').val(subtotal);
+    });
+
+    $('#product_qty').change(function () {
+        var found = raw.find(o => o.code === $('#product_code').val());
+        var tax = found.mrp * 100 / (100 + parseFloat(found.tax));
+        $('#product_tax').val("" + (tax * $('#product_qty').val()).toFixed(2) + " @ " + found.tax + " %");
+        var subtotal = found.mrp * (1 - $('#product_discount').val() / 100);
+        $('#subtotal').val($('#product_qty').val() * subtotal);
+    });
+
+    $('#product_discount').change(function () {
+        var found = raw.find(o => o.code === $('#product_code').val());
+        var subtotal = found.mrp * (1 - $('#product_discount').val() / 100);
+        $('#subtotal').val($('#product_qty').val() * subtotal);
+    });
+
+    })
+</script>
+
+<script type="text/javascript">
+    $('#row_add').click(function() {
+        
+    })
+</script>
+
+{% endblock javascripts %}
