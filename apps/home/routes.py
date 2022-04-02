@@ -77,7 +77,7 @@ def products():
 @blueprint.route('/messages')
 @login_required
 def messages():
-
+    
     return render_template('home/messages.html', df=messagestable())
 
 

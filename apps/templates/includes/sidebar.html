@@ -1,114 +1,129 @@
-
-    <nav class="pcoded-navbar">
-        <div class="navbar-wrapper">
-            <div class="navbar-brand header-logo">
-                <div class="imagess">
-                <img src="/static/assets/images/logoofavicon.ico" >
-                <span class="b-title">Perfume Point</span>
+<nav class="pcoded-navbar">
+    <div class="navbar-wrapper">
+        <div class="navbar-brand header-logo">
+            <a target="_blank" class="b-brand">
+                <div class="b-bg">
+                    <img src="/static/assets/images/logoofavicon.ico">
                 </div>
-                <!-- <a target="_blank" 
-                   href="https://appseed.us/admin-dashboards/flask-datta-able" class="b-brand">
-                    <div class="b-bg">
-                        <i class="feather icon-trending-up"></i>
-                    </div>
-                    <span class="b-title">Perfume Point</span>
-                </a> -->
-                <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
-            </div>
-            <div class="navbar-content scroll-div">
-                <ul class="nav pcoded-inner-navbar">
-        
-                  
-                            <li class=""><a href="/index" class="">Reporting</a></li>
-                
-                       
-                    </li>
-                    <li class="nav-item pcoded-menu-caption">
-                        <label>Billing</label>
-                    </li>
-                        <!-- <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu"> -->
-                            <!-- <a href="javascript:" class="nav-link "><span class="pcoded-micon">
-                                <i class="feather icon-box"></i></span><span class="pcoded-mtext">Forms</span></a> -->
-                            <ul class="pcoded-submenu">
-                                <li class=""><a href="/invoice_gen" class="">Invoice Generator</a></li>
-                                
-                            </ul>
-                        <!-- </li> -->
-                        <!-- <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
-                            <a href="javascript:" class="nav-link "><span class="pcoded-micon">
-                                <i class="feather icon-box"></i></span><span class="pcoded-mtext">Table</span></a> -->
-                            <ul class="pcoded-submenu">
-
-                                <li class=""><a href="/invoices" class="">Invoice Table</a></li>
-                                <li class=""><a href="/orders" class="">Orders Table</a></li>
-                                
-                            </ul>
-                        <!-- </li> -->
-                    <li class="nav-item pcoded-menu-caption">
-                        <label>Products</label>
-                    </li>
-                    <!-- <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
-                        <a href="javascript:" class="nav-link "><span class="pcoded-micon">
-                            <i class="feather icon-box"></i></span><span class="pcoded-mtext">Forms</span></a> -->
-                        <ul class="pcoded-submenu">
-                            <li class=""><a href="/product_add" class="">Add New Product</a></li>
-                            <li class=""><a href="/stocks_add" class="">Add Stocks</a></li>
-                            
-                        </ul>
-                    <!-- </li> -->
-                    <!-- <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
-                        <a href="javascript:" class="nav-link "><span class="pcoded-micon">
-                            <i class="feather icon-box"></i></span><span class="pcoded-mtext">Table</span></a> -->
-                        <ul class="pcoded-submenu">
-
-                            <li class=""><a href="/products" class="">Products Table</a></li>
-                            <li class=""><a href="/sales" class="">Sales Table</a></li>
-                            
-                        </ul>
-                    <!-- </li> -->
-                    <li class="nav-item pcoded-menu-caption">
-                        <label>Management</label>
-                    </li>
-                    <!-- <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
-                        <a href="javascript:" class="nav-link "><span class="pcoded-micon">
-                            <i class="feather icon-box"></i></span><span class="pcoded-mtext">Forms</span></a> -->
-                        <ul class="pcoded-submenu">
-                            <li class=""><a href="/cust_add" class="">Add New Customer</a></li>
-                            <li class=""><a href="/user_add" class="">Add New User</a></li>
-                            <li class=""><a href="/comp_add" class="">Add New Company</a></li>
-                        </ul>
-                    <!-- </li> -->
-                    <!-- <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
-                        <a href="javascript:" class="nav-link "><span class="pcoded-micon">
-                            <i class="feather icon-box"></i></span><span class="pcoded-mtext">Table</span></a> -->
-                        <ul class="pcoded-submenu">
-
-                            <li class=""><a href="/party" class="">Customer Table</a></li>
-                            <li class=""><a href="/employees" class="">Employees Table</a></li>
-                            <li class=""><a href="/company" class="">Company Table</a></li>
-                            
-                        </ul>
-                    </li>
-                    <li class="nav-item pcoded-menu-caption">
-                        <label>Authentication</label>
-                    </li>
-                    <!-- <li data-username="Authentication Sign up Sign in reset password Change password Personal information profile settings map form subscribe" class="nav-item pcoded-hasmenu">
-                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span class="pcoded-mtext">Authentication</span></a> -->
-                        <ul class="pcoded-submenu">
-                            <li class=""><a href="/auth-reset-pass.html" class="">Reset Pass</a></li>
-                            <li class=""><a href="/login.html" class="">Login</a></li>
-                            <li class=""><a href="/register.html" class="">Register</a></li>
-                        </ul>
-                    <!-- </li> -->
-       
-
-                    <li data-username="Disabled Menu" class="nav-item">
-                        <a href="{{ url_for('authentication_blueprint.logout') }}" class="nav-link">
-                            <span class="pcoded-micon"><i class="feather icon-power"></i></span><span class="pcoded-mtext">Logout</span>
-                        </a>
-                    </li>
-                                
-                </ul>
-            </div>
+                <span class="b-title">Perfume Point</span>
+            </a>
+            <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
         </div>
-    </nav>
+        <div class="navbar-content scroll-div">
+            <ul class="nav pcoded-inner-navbar">
+                <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item {% if 'ui-forms' in segment %} active {% endif %}">
+                    <a href="/index" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-file-text"></i></span><span class="pcoded-mtext">Report</span></a>
+                </li>
+                <li class="nav-item pcoded-menu-caption">
+                    <label>Billing</label>
+                </li>
+                <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item {% if 'ui-forms' in segment %} active {% endif %}">
+                    <a href="/invoice_gen" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-shopping-cart"></i></span><span
+                            class="pcoded-mtext">Invoicing</span></a>
+                </li>
+                <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item {% if 'ui-forms' in segment %} active {% endif %}">
+                    <a href="/invoices" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-file-plus"></i></span><span class="pcoded-mtext">Invoice
+                            Table</span></a>
+                </li>
+                <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item {% if 'ui-forms' in segment %} active {% endif %}">
+                    <a href="/orders" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-file-text"></i></span><span class="pcoded-mtext">Order
+                            Table</span></a>
+                </li>
+
+
+
+                <li class="nav-item pcoded-menu-caption">
+                    <label>Products</label>
+                </li>
+                <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item {% if 'ui-forms' in segment %} active {% endif %}">
+                    <a href="/prod_add" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-plus-square"></i></span><span class="pcoded-mtext">Add New
+                            Products</span></a>
+                </li>
+                <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item {% if 'ui-forms' in segment %} active {% endif %}">
+                    <a href="/stocks_add" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-plus-square"></i></span><span class="pcoded-mtext">Add New
+                            Stocks</span></a>
+                </li>
+                <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item {% if 'ui-forms' in segment %} active {% endif %}">
+                    <a href="/products" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-package"></i></span><span class="pcoded-mtext">Products
+                            Table</span></a>
+                </li>
+                <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item {% if 'ui-forms' in segment %} active {% endif %}">
+                    <a href="/sales" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-tag"></i></span><span class="pcoded-mtext">Sales Table</span></a>
+                </li>
+
+
+
+                <li class="nav-item pcoded-menu-caption">
+                    <label>Managemnet</label>
+                </li>
+                 <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item {% if 'ui-forms' in segment %} active {% endif %}">
+                <a href="/cust_add" class="nav-link "><span class="pcoded-micon"><i
+                            class="feather icon-user-plus"></i></span><span class="pcoded-mtext">Add New
+                        Customer</span></a>
+                </li>
+                <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item {% if 'ui-forms' in segment %} active {% endif %}">
+                    <a href="/user_add" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-user-plus"></i></span><span class="pcoded-mtext">Add New
+                            User</span></a>
+                </li>
+                <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item {% if 'ui-forms' in segment %} active {% endif %}">
+                    <a href="/comp_add" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-plus-square"></i></span><span class="pcoded-mtext">Add New Company</span></a>
+                </li>
+                <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item {% if 'ui-forms' in segment %} active {% endif %}">
+                    <a href="/party" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-users"></i></span><span class="pcoded-mtext">Customers Table</span></a>
+                </li>
+                <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item {% if 'ui-forms' in segment %} active {% endif %}">
+                    <a href="/employees" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-user"></i></span><span class="pcoded-mtext">Users Table</span></a>
+                </li>
+                <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item {% if 'ui-forms' in segment %} active {% endif %}">
+                    <a href="/company" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-home"></i></span><span class="pcoded-mtext">Company Tables</span></a>
+                </li>
+
+                <li class="nav-item pcoded-menu-caption">
+                    <label>Authenciation</label>
+                </li>
+                <li data-username="form elements advance componant validation masking wizard picker select"
+                    class="nav-item {% if 'ui-forms' in segment %} active {% endif %}">
+                    <a href="/register.html" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-user-check"></i></span><span class="pcoded-mtext">Register</span></a>
+                </li>
+
+                <li data-username="Disabled Menu" class="nav-item">
+                    <a href="{{ url_for('authentication_blueprint.logout') }}" class="nav-link">
+                        <span class="pcoded-micon"><i class="feather icon-power"></i></span><span
+                            class="pcoded-mtext text-danger">Logout</span>
+                    </a>
+                </li>
+
+
+
+            </ul>
+        </div>
+    </div>
+</nav>
