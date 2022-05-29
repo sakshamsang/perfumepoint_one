@@ -1,0 +1,37 @@
+<table class="table table-hover cell-border order-column" id="example"
+                                        style="width:80%; overflow:hidden">
+                                        <thead>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Code</th>
+                                            <th>Group</th>
+                                            <th>Brand</th>
+                                            <th>MRP</th>
+                                            <th>Discount</th>
+                                            <th>Price</th>
+                                            <th>Tax</th>
+                                            <th>Expiry</th>
+                                            <th>Original barcode</th>
+                                            <th>Custom Barcode</th>
+                                            <th>HSN Code</th>
+                                            <th>HSN Name</th>
+                                            <th>Updated On</th>
+                                            
+                                        </thead>
+                                        <tbody>
+                                            {% for custom in df.values %}
+                                            <tr>
+                                                {% for c in custom %}
+                                                <td>{{ c|safe }}</td>
+                                                {% endfor %}
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                {% for cust in df.columns %}
+                                                <th>{{ cust|safe }}</th>
+                                                {% endfor %}
+                                            </tr>
+                                        </tfoot>
+                                    </table>
